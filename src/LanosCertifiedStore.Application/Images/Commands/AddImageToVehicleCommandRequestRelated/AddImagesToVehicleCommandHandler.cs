@@ -43,7 +43,7 @@ internal sealed class AddImagesToVehicleCommandHandler(
 
         if (failedUploads.Count > 0)
         {
-            return Result.Create(ImageUploadErrors.UploadError(failedUploads));
+            return Result.Create(ImageErrors.UploadError(failedUploads));
         }
 
         if (successfulUploads.Count > 0)

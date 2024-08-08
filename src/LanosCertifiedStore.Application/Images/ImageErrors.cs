@@ -2,7 +2,7 @@
 
 namespace LanosCertifiedStore.Application.Images;
 
-public static class ImageUploadErrors
+public static class ImageErrors
 {
     public static Error UploadError(List<ImageResult> failedImageResults)
     {
