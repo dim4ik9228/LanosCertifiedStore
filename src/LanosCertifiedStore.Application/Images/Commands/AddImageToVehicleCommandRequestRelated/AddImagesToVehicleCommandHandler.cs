@@ -3,7 +3,7 @@ using LanosCertifiedStore.Application.Vehicles;
 using LanosCertifiedStore.Domain.Entities.VehicleRelated;
 using MediatR;
 
-namespace LanosCertifiedStore.Application.Images.Commands.AddImageToVehicle;
+namespace LanosCertifiedStore.Application.Images.Commands.AddImageToVehicleCommandRequestRelated;
 
 internal sealed class AddImagesToVehicleCommandHandler(
     IVehicleService vehicleService,

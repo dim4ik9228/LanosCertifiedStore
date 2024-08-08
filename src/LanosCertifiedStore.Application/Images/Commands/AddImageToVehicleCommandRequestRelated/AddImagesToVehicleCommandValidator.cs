@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
-namespace LanosCertifiedStore.Application.Images.Commands.AddImageToVehicle;
+namespace LanosCertifiedStore.Application.Images.Commands.AddImageToVehicleCommandRequestRelated;
 
 internal sealed class AddImagesToVehicleCommandValidator : AbstractValidator<AddImagesToVehicleCommandRequest>
 {
