@@ -18,6 +18,7 @@ internal sealed class VehicleService(
     UpdateVehicleCommand updateVehicleCommand,
     DeleteVehicleCommand deleteVehicleCommand,
     AddImagesToVehicleCommand addImagesToVehicleCommand,
+    RemoveImageFromVehicleCommand removeImageFromVehicleCommand,
     CollectionVehiclesQuery collectionVehiclesQuery,
     SingleVehicleQuery singleVehicleQuery,
     CountVehiclesQuery countVehiclesQuery,
@@ -70,6 +71,11 @@ internal sealed class VehicleService(
         await saveChangesCommand.Execute(cancellationToken);
     }
 
+    public async Task DeleteVehicle(Guid id, CancellationToken cancellationToken = default)
+    {
+        await deleteVehicleCommand.Execute(id, cancellationToken);
+    }
+
     public async Task AddImagesToVehicle(
         Guid vehicleId,
         List<VehicleImage> images,
@@ -79,8 +85,9 @@ internal sealed class VehicleService(
         await saveChangesCommand.Execute(cancellationToken);
     }
 
-    public async Task DeleteVehicle(Guid id, CancellationToken cancellationToken = default)
+    public async Task RemoveImageFromVehicle(Guid vehicleId, string imageId,
+        CancellationToken cancellationToken = default)
     {
-        await deleteVehicleCommand.Execute(id, cancellationToken);
+        await removeImageFromVehicleCommand.Execute(vehicleId, imageId, cancellationToken);
     }
 }

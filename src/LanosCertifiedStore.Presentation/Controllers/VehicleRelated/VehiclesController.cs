@@ -1,4 +1,6 @@
-﻿using LanosCertifiedStore.Application.Images.Commands.AddImageToVehicle;
+﻿using LanosCertifiedStore.Application.Images;
+using LanosCertifiedStore.Application.Images.Commands.AddImageToVehicleCommandRequestRelated;
+using LanosCertifiedStore.Application.Images.Commands.RemoveImageFromVehicleCommandRequestRelated;
 using LanosCertifiedStore.Application.Shared.DtosRelated;
 using LanosCertifiedStore.Application.Shared.ResultRelated;
 using LanosCertifiedStore.Application.Shared.ValidationRelated;
@@ -110,6 +112,7 @@ public sealed class VehiclesController : BaseApiController
         return NoContent();
     }
 
+    // TODO implement safety checks for if user actually owns the vehicle he is trying to update.
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -125,6 +128,7 @@ public sealed class VehiclesController : BaseApiController
         return NoContent();
     }
 
+    // TODO implement safety checks for if user actually owns the vehicle he is trying to update.
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Error), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -148,15 +152,26 @@ public sealed class VehiclesController : BaseApiController
         return Ok(result.Error);
     }
 
-    // [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    // [HttpDelete("images")]
-    // public async Task<ActionResult> DeleteImageFromVehicle(
-    //     [FromBody] RemoveImageFromVehicleCommand removeImageFromVehicleCommand)
-    // {
-    //     return HandleResult(await Mediator.Send(removeImageFromVehicleCommand));
-    // }
-    //
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [HttpDelete("{vehicleId:guid}/images")]
+    public async Task<ActionResult> DeleteImageFromVehicle(Guid vehicleId, [FromQuery] string imageId)
+    {
+        var result = await Sender.Send(new RemoveImageFromVehicleCommandRequest(vehicleId, imageId));
+
+        if (result.IsSuccess)
+        {
+            return NoContent();
+        }
+
+        if (result.Error == Error.NotFound(vehicleId) || result.Error == ImageErrors.NotFound(imageId))
+        {
+            return NotFound(CreateNotFoundProblemDetails(result.Error!));
+        }
+
+        return BadRequest(result.Error);
+    }
+
     // [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     // [HttpPost("images/main")]

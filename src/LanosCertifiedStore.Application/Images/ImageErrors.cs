@@ -16,4 +16,20 @@ public static class ImageErrors
             message
         );
     }
+
+    public static readonly Error NoImages = new Error(
+        "EmptyImagesCollection",
+        "Resource does not have any related images");
+
+    public static Error NotFound(string imageId) => new(
+        "ImageNotFound",
+        $"Image with Id {imageId} is not found!");
+
+    public static readonly Error DeletingMainImage = new(
+        "DeletingMainImage",
+        "Can not delete a main image");
+
+    public static readonly Error UnsuccessfulRemoval = new(
+        "ImageDeletingFailure",
+        "Failed to remove image from cloud provider");
 }

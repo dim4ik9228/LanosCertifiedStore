@@ -33,7 +33,9 @@ public interface IVehicleService
 
     Task UpdateVehicle(UpdateVehicleCommandRequest request, CancellationToken cancellationToken = default);
 
+    Task DeleteVehicle(Guid id, CancellationToken cancellationToken = default);
+
     Task AddImagesToVehicle(Guid vehicleId, List<VehicleImage> images, CancellationToken cancellationToken = default);
 
-    Task DeleteVehicle(Guid id, CancellationToken cancellationToken = default);
+    Task RemoveImageFromVehicle(Guid vehicleId, string imageId, CancellationToken cancellationToken = default);
 }
