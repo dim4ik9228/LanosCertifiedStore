@@ -38,4 +38,5 @@ public interface IVehicleService
     Task AddImagesToVehicle(Guid vehicleId, List<VehicleImage> images, CancellationToken cancellationToken = default);
 
     Task RemoveImageFromVehicle(Guid vehicleId, string imageId, CancellationToken cancellationToken = default);
+    Task SetMainImage(Guid vehicleId, string imageId, CancellationToken cancellationToken = default);
 }

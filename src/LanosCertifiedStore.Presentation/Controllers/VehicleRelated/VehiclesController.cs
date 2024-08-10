@@ -1,6 +1,7 @@
 ﻿using LanosCertifiedStore.Application.Images;
 using LanosCertifiedStore.Application.Images.Commands.AddImageToVehicleCommandRequestRelated;
 using LanosCertifiedStore.Application.Images.Commands.RemoveImageFromVehicleCommandRequestRelated;
+using LanosCertifiedStore.Application.Images.Commands.SetVehicleMainImageCommandRequestRelated;
 using LanosCertifiedStore.Application.Shared.DtosRelated;
 using LanosCertifiedStore.Application.Shared.ResultRelated;
 using LanosCertifiedStore.Application.Shared.ValidationRelated;
@@ -172,12 +173,23 @@ public sealed class VehiclesController : BaseApiController
         return BadRequest(result.Error);
     }
 
-    // [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    // [HttpPost("images/main")]
-    // public async Task<ActionResult> SetVehicleMainImage(
-    //     [FromBody] SetVehicleMainImageCommand setVehicleMainImageCommand)
-    // {
-    //     return HandleResult(await Mediator.Send(setVehicleMainImageCommand));
-    // }
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [HttpPost("{vehicleId:guid}/images/main")]
+    public async Task<ActionResult> SetVehicleMainImage(Guid vehicleId, [FromQuery] string imageId)
+    {
+        var result = await Sender.Send(new SetVehicleMainImageCommandRequest(vehicleId, imageId));
+
+        if (result.IsSuccess)
+        {
+            return NoContent();
+        }
+
+        if (result.Error == Error.NotFound(vehicleId) || result.Error == ImageErrors.NotFound(imageId))
+        {
+            return NotFound(CreateNotFoundProblemDetails(result.Error!));
+        }
+
+        return BadRequest(result.Error);
+    }
 }

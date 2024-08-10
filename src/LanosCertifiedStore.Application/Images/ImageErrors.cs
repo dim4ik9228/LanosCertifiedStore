@@ -32,4 +32,8 @@ public static class ImageErrors
     public static readonly Error UnsuccessfulRemoval = new(
         "ImageDeletingFailure",
         "Failed to remove image from cloud provider");
+
+    public static readonly Error AlreadyMainImage = new(
+        "AlreadyMainImage",
+        "This image is already set main");
 }
