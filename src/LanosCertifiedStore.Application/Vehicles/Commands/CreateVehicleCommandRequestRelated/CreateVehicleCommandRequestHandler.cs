@@ -5,7 +5,7 @@ using MediatR;
 
 namespace LanosCertifiedStore.Application.Vehicles.Commands.CreateVehicleCommandRequestRelated;
 
-internal sealed class CreateVehicleCommandHandler(
+internal sealed class CreateVehicleCommandRequestHandler(
     IVehicleService vehicleService,
     IUserContext userContext) : IRequestHandler<CreateVehicleCommandRequest, Result<Guid>>
 {

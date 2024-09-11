@@ -5,7 +5,7 @@ using MediatR;
 
 namespace LanosCertifiedStore.Application.Images.Commands.AddImageToVehicleCommandRequestRelated;
 
-internal sealed class AddImagesToVehicleCommandHandler(
+internal sealed class AddImagesToVehicleCommandRequestHandler(
     IVehicleService vehicleService,
     IImageService imageService) : IRequestHandler<AddImagesToVehicleCommandRequest, Result>
 {

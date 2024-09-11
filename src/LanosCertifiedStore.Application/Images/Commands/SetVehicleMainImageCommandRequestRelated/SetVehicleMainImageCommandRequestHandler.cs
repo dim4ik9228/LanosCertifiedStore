@@ -5,7 +5,7 @@ using MediatR;
 
 namespace LanosCertifiedStore.Application.Images.Commands.SetVehicleMainImageCommandRequestRelated;
 
-internal sealed class SetVehicleMainImageCommandHandler(
+internal sealed class SetVehicleMainImageCommandRequestHandler(
     IVehicleService vehicleService) : IRequestHandler<SetVehicleMainImageCommandRequest, Result>
 {
     public async Task<Result> Handle(SetVehicleMainImageCommandRequest request, CancellationToken cancellationToken)

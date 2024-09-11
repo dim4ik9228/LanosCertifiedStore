@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace LanosCertifiedStore.Application.Images.Commands.AddImageToVehicleCommandRequestRelated;
 
-internal sealed class AddImagesToVehicleCommandValidator : AbstractValidator<AddImagesToVehicleCommandRequest>
+internal sealed class AddImagesToVehicleCommandRequestValidator : AbstractValidator<AddImagesToVehicleCommandRequest>
 {
     private const int MinimalFileSize = 0;
 
-    public AddImagesToVehicleCommandValidator()
+    public AddImagesToVehicleCommandRequestValidator()
     {
         RuleFor(x => x.Images)
             .NotEmpty()
