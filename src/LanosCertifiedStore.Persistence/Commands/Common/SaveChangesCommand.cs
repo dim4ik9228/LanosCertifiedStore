@@ -2,7 +2,7 @@
 
 namespace LanosCertifiedStore.Persistence.Commands.Common;
 
-public class SaveChangesCommand(ApplicationDatabaseContext context)
+public sealed class SaveChangesCommand(ApplicationDatabaseContext context)
 {
     public async Task<int> Execute(CancellationToken cancellationToken)
     {
