@@ -45,9 +45,11 @@ public sealed class IntegrationTestsWebApplicationFactory : WebApplicationFactor
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        var connectionString = _dbContainer.GetConnectionString() + "; " + "Include Error Detail=true";
+
         Environment.SetEnvironmentVariable(
             "ConnectionStrings:PostgreSqlConnection",
-            _dbContainer.GetConnectionString()
+            connectionString
         );
 
         var keycloakAddress = _keycloakContainer.GetBaseAddress();
