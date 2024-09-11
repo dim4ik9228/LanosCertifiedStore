@@ -3,6 +3,7 @@ using System;
 using LanosCertifiedStore.Persistence.Contexts.ApplicationDatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LanosCertifiedStore.Persistence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDatabaseContext))]
-    partial class ApplicationDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240911124539_UsersNavigationPropertyRemovedFromUserRoleEntity")]
+    partial class UsersNavigationPropertyRemovedFromUserRoleEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

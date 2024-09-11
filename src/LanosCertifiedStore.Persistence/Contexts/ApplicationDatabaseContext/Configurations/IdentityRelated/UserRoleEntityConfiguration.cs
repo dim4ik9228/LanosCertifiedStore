@@ -9,9 +9,14 @@ internal sealed class UserRoleEntityConfiguration : IEntityTypeConfiguration<Use
     public void Configure(EntityTypeBuilder<UserRole> builder)
     {
         builder.HasKey(x => x.Name);
-        
+
+        builder
+            .HasMany<User>()
+            .WithOne(u => u.UserRole)
+            .IsRequired();
+
         builder.Property(x => x.Name).HasMaxLength(64);
-        
+
         builder.HasData(UserRole.User, UserRole.Manager, UserRole.Administrator);
         builder.ToTable(DatabaseConstants.Tables.UserRoles, DatabaseConstants.Schemas.IdentitySchema);
     }

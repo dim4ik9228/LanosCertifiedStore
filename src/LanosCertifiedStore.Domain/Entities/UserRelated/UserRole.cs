@@ -16,6 +16,5 @@ public sealed class UserRole
     }
 
     public string Name { get; init; }
-    public ICollection<User> Users { get; init; } = [];
     public override string ToString() => Name;
 }
