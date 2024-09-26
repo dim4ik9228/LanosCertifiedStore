@@ -42,7 +42,9 @@ public sealed class VehicleModelsController : BaseApiController
 
         return Ok(result.Value);
     }
-
+    
+    
+    // TODO add respective permission for accessing endpoint
     [HttpGet("{id:guid}", Name = "GetModelById")]
     [ProducesResponseType(typeof(SingleVehicleModelDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -74,7 +76,7 @@ public sealed class VehicleModelsController : BaseApiController
     [HasAccessPermission("models:create")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> CreateBrand([FromBody] CreateVehicleModelCommandRequest createVehicleCommandRequest)
+    public async Task<ActionResult> CreateModel([FromBody] CreateVehicleModelCommandRequest createVehicleCommandRequest)
     {
         var result = await Sender.Send(createVehicleCommandRequest);
 
