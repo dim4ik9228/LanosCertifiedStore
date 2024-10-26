@@ -26,7 +26,8 @@ internal sealed class VehicleRelatedMappingProfile : Profile
             .ForMember(d => d.DrivetrainType, o => o.MapFrom(x => x.DrivetrainType.Name))
             .ForMember(d => d.Town, o => o.MapFrom(x => x.LocationTown.Name))
             .ForMember(d => d.Area, o => o.MapFrom(x => x.LocationTown.LocationArea.Name))
-            .ForMember(d => d.Region, o => o.MapFrom(x => x.LocationTown.LocationRegion.Name));
+            .ForMember(d => d.Region, o => o.MapFrom(x => x.LocationTown.LocationRegion.Name))
+            .ForMember(d => d.Vincode, o => o.MapFrom(x => x.Vincode));
     }
 
     private void GetVehicleInstanceMapping()

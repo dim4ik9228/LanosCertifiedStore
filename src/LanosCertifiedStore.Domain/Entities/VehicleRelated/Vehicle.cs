@@ -12,6 +12,7 @@ public sealed class Vehicle : IIdentifiable<Guid>
     public double Displacement { get; set; }
     public int Mileage { get; set; }
     public int ProductionYear { get; set; }
+    public string Vincode { get; set; }
     public Guid LocationTownId { get; set; }
     public VehicleLocationTown LocationTown { get; set; } = null!;
     public Guid BrandId { get; set; }
@@ -36,8 +37,10 @@ public sealed class Vehicle : IIdentifiable<Guid>
     public User Owner { get; set; } = null!;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    public Vehicle() { }
-    
+    public Vehicle()
+    {
+    }
+
     public Vehicle(
         Guid brandId,
         Guid modelId,
@@ -53,7 +56,8 @@ public sealed class Vehicle : IIdentifiable<Guid>
         double displacement,
         string description,
         int productionYear,
-        int mileage)
+        int mileage,
+        string vincode)
     {
         BrandId = brandId;
         ModelId = modelId;
@@ -70,5 +74,6 @@ public sealed class Vehicle : IIdentifiable<Guid>
         Description = description;
         ProductionYear = productionYear;
         Mileage = mileage;
+        Vincode = vincode;
     }
 }

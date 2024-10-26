@@ -28,7 +28,8 @@ internal sealed class CreateVehicleCommandRequestHandler(
             request.Displacement,
             request.Description,
             request.ProductionYear,
-            request.Mileage);
+            request.Mileage,
+            request.Vincode);
 
         await vehicleService.AddAsync(vehicle, cancellationToken);
 

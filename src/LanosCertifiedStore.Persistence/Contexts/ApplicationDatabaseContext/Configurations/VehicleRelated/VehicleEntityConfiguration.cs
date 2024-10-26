@@ -9,6 +9,13 @@ internal sealed class VehicleEntityConfiguration : IEntityTypeConfiguration<Vehi
     public void Configure(EntityTypeBuilder<Vehicle> builder)
     {
         builder.Property(x => x.Description).IsRequired().HasMaxLength(2048);
+        builder.Property(v => v.Vincode)
+            .IsRequired()
+            .HasMaxLength(17);
+
+        builder.HasIndex(v => v.Vincode)
+            .IsUnique();
+
         builder.ToTable(DatabaseConstants.Tables.Vehicles, DatabaseConstants.Schemas.VehiclesSchema);
     }
 }

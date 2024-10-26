@@ -9,200 +9,209 @@ internal static class SeedVehicles
 {
     private static readonly Random Random = new();
     
-    public static List<Vehicle> GetVehicles(
-        List<VehicleType> types,
-        List<VehicleColor> colors,
-        List<VehicleBrand> brands,
-        List<VehicleModel> models,
-        List<VehicleBodyType> bodyTypes,
-        List<VehicleDrivetrainType> drivetrainTypes,
-        List<VehicleEngineType> engineTypes,
-        List<VehicleTransmissionType> transmissionTypes,
-        List<VehicleLocationRegion> regions,
-        List<VehicleLocationArea> areas,
-        List<VehicleLocationTown> towns,
-        List<User> users) =>
-    [
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Toyota")).Id,
-            models.Single(m => m.Name.Equals("Camry")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Гібридний (HEV)")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Варіатор")).Id,
-            colorId: colors.First(x => x.Name.Equals("Чорний")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Київ")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Київ")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Київ")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2019,
-            mileage: 64385,
-            displacement: 2.5d,
-            price: 30000,
-            description: "Продам свою Toyota Camry чорного кольору."
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Ford")).Id,
-            models.Single(m => m.Name.Equals("F-150")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Пікап")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
-            colorId: colors.First(x => x.Name.Equals("Білий")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Ірпінь")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Бучанський")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Київська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2020,
-            mileage: 74690,
-            displacement: 2.9d,
-            price: 45000,
-            description: "Продам Ford F-150 білого кольору"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Honda")).Id,
-            models.Single(m => m.Name.Equals("Civic")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Купе")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
-            colorId: colors.First(x => x.Name.Equals("Жовтий")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Ірпінь")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Бучанський")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Київська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2020,
-            mileage: 74690,
-            displacement: 2.0d,
-            price: 28000,
-            description: "Продам Honda Civic жовтого кольору"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Chevrolet")).Id,
-            models.Single(m => m.Name.Equals("Silverado")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Пікап")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Дизельний")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
-            colorId: colors.First(x => x.Name.Equals("Синій")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Рівне")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Рівненський")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Рівненська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2021,
-            mileage: 174690,
-            price: 55000,
-            displacement: 6.2d,
-            description: "Продається Chevrolet Silverado синього кольору за адекватну ціну"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Chevrolet")).Id,
-            models.Single(m => m.Name.Equals("Silverado")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Пікап")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Задній")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
-            colorId: colors.First(x => x.Name.Equals("Білий")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Олександрія")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Рівненський")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Рівненська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2020,
-            mileage: 375690,
-            price: 41000,
-            displacement: 5.0d,
-            description: "Продається Chevrolet Silverado білого кольору. Дуже вигідна пропозиція!"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Volkswagen")).Id,
-            models.Single(m => m.Name.Equals("Passat")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Універсал")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Робот")).Id,
-            colorId: colors.First(x => x.Name.Equals("Чорний")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Ковель")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Ковельський")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Волинська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2016,
-            mileage: 215690,
-            price: 27000,
-            displacement: 2.0d,
-            description: "Продається Volkswagen Passat чорного кольору"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Volkswagen")).Id,
-            models.Single(m => m.Name.Equals("Passat")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Робот")).Id,
-            colorId: colors.First(x => x.Name.Equals("Сірий")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Луцьк")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Луцький")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Волинська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2017,
-            mileage: 115450,
-            price: 29000,
-            displacement: 2.0d,
-            description: "Продається Volkswagen Passat чорного кольору"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("Nissan")).Id,
-            models.Single(m => m.Name.Equals("Altima")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Гібридний (HEV)")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
-            colorId: colors.First(x => x.Name.Equals("Червоний")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Хмельницький")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Хмельницький")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Хмельницька")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2019,
-            mileage: 77450,
-            price: 31000,
-            displacement: 2.4d,
-            description: "Продається Nissan Altima червоного кольору"
-        ),
-        new Vehicle(
-            brands.Single(b => b.Name.Equals("BMW")).Id,
-            models.Single(m => m.Name.Equals("M3")).Id,
-            types.Single(x => x.Name.Equals("Легковик")).Id,
-            bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
-            drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
-            engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
-            transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Робот")).Id,
-            colorId: colors.First(x => x.Name.Equals("Білий")).Id,
-            locationTownId: towns.Single(
-                t => t.Name.Equals("Дніпро")
-                     && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Дніпровський")).Id)
-                     && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Дніпропетровська")).Id)).Id,
-            ownerId: users[Random.Next(0, 3)].Id,
-            productionYear: 2022,
-            mileage: 10450,
-            price: 75000,
-            displacement: 3.0d,
-            description: "Продається BMW M3 білого кольору"
-        ),
+   public static List<Vehicle> GetVehicles(
+    List<VehicleType> types,
+    List<VehicleColor> colors,
+    List<VehicleBrand> brands,
+    List<VehicleModel> models,
+    List<VehicleBodyType> bodyTypes,
+    List<VehicleDrivetrainType> drivetrainTypes,
+    List<VehicleEngineType> engineTypes,
+    List<VehicleTransmissionType> transmissionTypes,
+    List<VehicleLocationRegion> regions,
+    List<VehicleLocationArea> areas,
+    List<VehicleLocationTown> towns,
+    List<User> users) =>
+[
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Toyota")).Id,
+        models.Single(m => m.Name.Equals("Camry")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Гібридний (HEV)")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Варіатор")).Id,
+        colorId: colors.First(x => x.Name.Equals("Чорний")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Київ")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Київ")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Київ")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2019,
+        mileage: 64385,
+        displacement: 2.5d,
+        price: 30000,
+        description: "Продам свою Toyota Camry чорного кольору.",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Ford")).Id,
+        models.Single(m => m.Name.Equals("F-150")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Пікап")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
+        colorId: colors.First(x => x.Name.Equals("Білий")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Ірпінь")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Бучанський")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Київська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2020,
+        mileage: 74690,
+        displacement: 2.9d,
+        price: 45000,
+        description: "Продам Ford F-150 білого кольору",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Honda")).Id,
+        models.Single(m => m.Name.Equals("Civic")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Купе")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
+        colorId: colors.First(x => x.Name.Equals("Жовтий")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Ірпінь")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Бучанський")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Київська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2020,
+        mileage: 74690,
+        displacement: 2.0d,
+        price: 28000,
+        description: "Продам Honda Civic жовтого кольору",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Chevrolet")).Id,
+        models.Single(m => m.Name.Equals("Silverado")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Пікап")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Дизельний")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
+        colorId: colors.First(x => x.Name.Equals("Синій")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Рівне")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Рівненський")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Рівненська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2021,
+        mileage: 174690,
+        price: 55000,
+        displacement: 6.2d,
+        description: "Продається Chevrolet Silverado синього кольору за адекватну ціну",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Chevrolet")).Id,
+        models.Single(m => m.Name.Equals("Silverado")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Пікап")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Задній")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
+        colorId: colors.First(x => x.Name.Equals("Білий")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Олександрія")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Рівненський")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Рівненська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2020,
+        mileage: 375690,
+        price: 41000,
+        displacement: 5.0d,
+        description: "Продається Chevrolet Silverado білого кольору. Дуже вигідна пропозиція!",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Volkswagen")).Id,
+        models.Single(m => m.Name.Equals("Passat")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Універсал")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Робот")).Id,
+        colorId: colors.First(x => x.Name.Equals("Чорний")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Ковель")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Ковельський")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Волинська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2016,
+        mileage: 215690,
+        price: 27000,
+        displacement: 2.0d,
+        description: "Продається Volkswagen Passat чорного кольору",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Volkswagen")).Id,
+        models.Single(m => m.Name.Equals("Passat")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Передній")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Робот")).Id,
+        colorId: colors.First(x => x.Name.Equals("Сірий")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Луцьк")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Луцький")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Волинська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2017,
+        mileage: 115450,
+        price: 29000,
+        displacement: 2.0d,
+        description: "Продається Volkswagen Passat чорного кольору",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("Nissan")).Id,
+        models.Single(m => m.Name.Equals("Altima")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Гібридний (HEV)")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Автомат")).Id,
+        colorId: colors.First(x => x.Name.Equals("Червоний")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Хмельницький")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Хмельницький")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Хмельницька")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2019,
+        mileage: 77450,
+        price: 31000,
+        displacement: 2.4d,
+        description: "Продається Nissan Altima червоного кольору",
+        vincode: GenerateRandomVIN()
+    ),
+    new Vehicle(
+        brands.Single(b => b.Name.Equals("BMW")).Id,
+        models.Single(m => m.Name.Equals("M3")).Id,
+        types.Single(x => x.Name.Equals("Легковик")).Id,
+        bodyTypeId: bodyTypes.Single(b => b.Name.Equals("Седан")).Id,
+        drivetrainTypeId: drivetrainTypes.Single(d => d.Name.Equals("Повний")).Id,
+        engineTypeId: engineTypes.Single(e => e.Name.Equals("Бензиновий")).Id,
+        transmissionTypeId: transmissionTypes.Single(t => t.Name.Equals("Робот")).Id,
+        colorId: colors.First(x => x.Name.Equals("Білий")).Id,
+        locationTownId: towns.Single(
+            t => t.Name.Equals("Дніпро")
+                 && t.LocationAreaId.Equals(areas.Single(a => a.Name.Equals("Дніпровський")).Id)
+                 && t.LocationRegionId.Equals(regions.Single(a => a.Name.Equals("Дніпропетровська")).Id)).Id,
+        ownerId: users[Random.Next(0, 3)].Id,
+        productionYear: 2022,
+        mileage: 10450,
+        price: 75000,
+        displacement: 3.0d,
+        description: "Продається BMW M3 білого кольору",
+        vincode: GenerateRandomVIN()
+    ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Mercedes-Benz")).Id,
             models.Single(m => m.Name.Equals("C-Class")).Id,
@@ -221,7 +230,8 @@ internal static class SeedVehicles
             mileage: 8060,
             price: 58000,
             displacement: 3d,
-            description: "Продається Mercedes-Benz C-Class чорного кольору"
+            description: "Продається Mercedes-Benz C-Class чорного кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Mercedes-Benz")).Id,
@@ -241,7 +251,8 @@ internal static class SeedVehicles
             mileage: 3000,
             price: 78000,
             displacement: 4.0d,
-            description: "Продається Mercedes-Benz C-Class чорного кольору"
+            description: "Продається Mercedes-Benz C-Class чорного кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Mercedes-Benz")).Id,
@@ -261,7 +272,8 @@ internal static class SeedVehicles
             mileage: 136055,
             price: 46000,
             displacement: 2.0d,
-            description: "Продається Mercedes-Benz C-Class сріблястого кольору"
+            description: "Продається Mercedes-Benz C-Class сріблястого кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Mercedes-Benz")).Id,
@@ -281,7 +293,8 @@ internal static class SeedVehicles
             mileage: 13055,
             price: 80000,
             displacement: 4.0d,
-            description: "Продається Mercedes-Benz C-Class синього кольору"
+            description: "Продається Mercedes-Benz C-Class синього кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Audi")).Id,
@@ -301,7 +314,8 @@ internal static class SeedVehicles
             mileage: 13055,
             price: 64000,
             displacement: 3.0d,
-            description: "Продається Audi A6 кольору індиґо"
+            description: "Продається Audi A6 кольору індиґо",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Audi")).Id,
@@ -321,7 +335,8 @@ internal static class SeedVehicles
             mileage: 48142,
             price: 57000,
             displacement: 2.0,
-            description: "Продається Audi A6 білого кольору"
+            description: "Продається Audi A6 білого кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Audi")).Id,
@@ -341,7 +356,8 @@ internal static class SeedVehicles
             mileage: 9142,
             price: 70000,
             displacement: 3.0d,
-            description: "Продається Audi A6 червоного кольору"
+            description: "Продається Audi A6 червоного кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Audi")).Id,
@@ -361,7 +377,8 @@ internal static class SeedVehicles
             mileage: 25142,
             price: 73000,
             displacement: 3.0d,
-            description: "Продається Audi A6 сірого кольору"
+            description: "Продається Audi A6 сірого кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Hyundai")).Id,
@@ -381,7 +398,8 @@ internal static class SeedVehicles
             mileage: 500,
             price: 27000,
             displacement: 2.5d,
-            description: "Продається Hyundai Sonata сірого кольору"
+            description: "Продається Hyundai Sonata сірого кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Hyundai")).Id,
@@ -401,7 +419,8 @@ internal static class SeedVehicles
             mileage: 1500,
             price: 26500,
             displacement: 2.0d,
-            description: "Продається Hyundai Sonata червоного кольору"
+            description: "Продається Hyundai Sonata червоного кольору",
+            vincode: GenerateRandomVIN()
         ),
         new Vehicle(
             brands.Single(b => b.Name.Equals("Hyundai")).Id,
@@ -421,7 +440,17 @@ internal static class SeedVehicles
             mileage: 8000,
             price: 24000,
             displacement: 2.0d,
-            description: "Продається Hyundai Sonata білого кольору"
+            description: "Продається Hyundai Sonata білого кольору",
+            vincode: GenerateRandomVIN()
         )
     ];
+   
+   
+    private static string GenerateRandomVIN()
+    {
+        const string chars = "ABCDEFGHJKLMNPRSTUVWXYZ1234567890";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 17)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
 }
