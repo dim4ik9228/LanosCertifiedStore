@@ -34,7 +34,15 @@ internal sealed class CreateVehicleCommandRequestValidator : AbstractValidator<C
             .MustAsync(async (modelId, _) => 
                 await inputValidationService.CheckMainAspectPresence<VehicleModel>(modelId))
             .WithMessage("Such model doesn't exists!");
-        
+
+        RuleFor(x => x.Vincode)
+            .NotEmpty()
+            .MaximumLength(17)
+            .MinimumLength(17)
+            .WithMessage("Vincode should be 17 symbols long!");
+
+
+
         // RuleFor(x => new { x.ModelId, x.ProductionYear })
         //     .NotEmpty()
         //     .MustAsync(async (data, _) =>
@@ -45,7 +53,7 @@ internal sealed class CreateVehicleCommandRequestValidator : AbstractValidator<C
         //                model.MaximumProductionYear >= data.ProductionYear;
         //     })
         //     .WithMessage("Production year must be in range of the given model production years!");
-        
+
         // RuleFor(x => new { x.ModelId, x.BodyTypeId })
         //     .NotEmpty()
         //     .MustAsync(async (ids, _) => 

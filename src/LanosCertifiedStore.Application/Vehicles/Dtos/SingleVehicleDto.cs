@@ -21,6 +21,7 @@ public sealed record SingleVehicleDto : IIdentifiable<Guid>
     public int? Mileage { get; init; }
     public int? ProductionYear { get; init; }
     public double? Displacement { get; init; }
+    public string Vincode { get; init; }
     public Guid OwnerId { get; init; }
     public OwnerDto OwnerData { get; set; } = default!;
     public IEnumerable<PriceDto>? Prices { get; init; }

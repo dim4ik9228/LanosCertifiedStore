@@ -16,4 +16,5 @@ public sealed record CreateVehicleCommandRequest(
     double Displacement,
     decimal Price,
     int ProductionYear,
-    int Mileage) : ICommandRequest<Guid>;
+    int Mileage,
+    string Vincode) : ICommandRequest<Guid>;
