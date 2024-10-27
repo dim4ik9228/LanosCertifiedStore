@@ -22,6 +22,5 @@ internal sealed class VehicleEngineTypeConfiguration : IEntityTypeConfiguration<
 
         builder.HasIndex(p => p.Name).IsUnique();
         builder.ToTable(DatabaseConstants.Tables.VehicleEngineTypes, DatabaseConstants.Schemas.VehiclesSchema);
-
     }
 }

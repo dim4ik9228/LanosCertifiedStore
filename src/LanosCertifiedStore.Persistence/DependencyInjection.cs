@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using LanosCertifiedStore.Application.Shared;
-using LanosCertifiedStore.Application.Shared.ValidationRelated;
 using LanosCertifiedStore.Persistence.Contexts.ApplicationDatabaseContext;
 using LanosCertifiedStore.Persistence.Queries.Common.Classes;
 using LanosCertifiedStore.Persistence.Queries.Common.Contracts;
@@ -29,7 +28,6 @@ public static class DependencyInjection
         services.AddCommonServices();
 
         services.AddScoped<ITransactionService, TransactionService>();
-        services.AddScoped<IValidationHelper, ValidationHelper>();
 
         return services;
     }
