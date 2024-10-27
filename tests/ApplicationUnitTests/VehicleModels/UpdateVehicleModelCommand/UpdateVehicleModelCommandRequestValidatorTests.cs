@@ -1,18 +1,15 @@
 ﻿using FluentValidation.TestHelper;
-using LanosCertifiedStore.Application.Shared.ValidationRelated;
 using LanosCertifiedStore.Application.VehicleModels.Commands.UpdateVehicleModelRelated;
-using LanosCertifiedStore.Domain.Entities.VehicleRelated.TypeRelated;
 
 namespace ApplicationUnitTests.VehicleModels.UpdateVehicleModelCommand;
 
 public sealed class UpdateVehicleModelCommandRequestValidatorTests
 {
-    private readonly IValidationHelper _validationHelper = Substitute.For<IValidationHelper>();
     private readonly UpdateVehicleModelCommandRequestValidator _validator;
 
     public UpdateVehicleModelCommandRequestValidatorTests()
     {
-        _validator = new UpdateVehicleModelCommandRequestValidator(_validationHelper);
+        _validator = new UpdateVehicleModelCommandRequestValidator();
     }
 
     [Fact]
@@ -20,10 +17,6 @@ public sealed class UpdateVehicleModelCommandRequestValidatorTests
     {
         // Arrange
         var model = UpdateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleTransmissionType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
 
         // Act
         var result = await _validator.TestValidateAsync(model);
@@ -38,10 +31,6 @@ public sealed class UpdateVehicleModelCommandRequestValidatorTests
         // Arrange
         var model = UpdateVehicleModelCommandTestExemplars.Regular();
 
-        _validationHelper
-            .CheckMainAspectPresence<VehicleBodyType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
-
         // Act
         var result = await _validator.TestValidateAsync(model);
 
@@ -55,10 +44,6 @@ public sealed class UpdateVehicleModelCommandRequestValidatorTests
         // Arrange
         var model = UpdateVehicleModelCommandTestExemplars.Regular();
 
-        _validationHelper
-            .CheckMainAspectPresence<VehicleDrivetrainType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
-
         // Act
         var result = await _validator.TestValidateAsync(model);
 
@@ -71,10 +56,6 @@ public sealed class UpdateVehicleModelCommandRequestValidatorTests
     {
         // Arrange
         var model = UpdateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleEngineType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
 
         // Act
         var result = await _validator.TestValidateAsync(model);

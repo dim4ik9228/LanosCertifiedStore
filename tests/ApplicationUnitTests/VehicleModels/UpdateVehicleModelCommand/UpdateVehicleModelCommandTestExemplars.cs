@@ -7,12 +7,12 @@ internal static class UpdateVehicleModelCommandTestExemplars
     public static UpdateVehicleModelCommandRequest Regular()
     {
         return new UpdateVehicleModelCommandRequest(
-            Guid.NewGuid(),
+            Guid.Empty,
             2004,
-            [Guid.NewGuid(), Guid.NewGuid()],
-            [Guid.NewGuid(), Guid.NewGuid()],
-            [Guid.NewGuid(), Guid.NewGuid()],
-            [Guid.NewGuid(), Guid.NewGuid()]
+            [],
+            [],
+            [],
+            []
         );
     }
 }
