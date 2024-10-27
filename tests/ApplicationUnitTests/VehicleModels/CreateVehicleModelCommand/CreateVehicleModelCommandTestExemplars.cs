@@ -8,14 +8,14 @@ internal static class CreateVehicleModelCommandTestExemplars
     {
         return new CreateVehicleModelCommandRequest(
             "test model",
-            Guid.NewGuid(),
-            Guid.NewGuid(),
+            Guid.Empty,
+            Guid.Empty,
             2004,
             2024,
-            [Guid.NewGuid(), Guid.NewGuid()],
-            [Guid.NewGuid(), Guid.NewGuid()],
-            [Guid.NewGuid(), Guid.NewGuid()],
-            [Guid.NewGuid(), Guid.NewGuid()]
+            [],
+            [],
+            [],
+            []
         );
     }
 

@@ -1,27 +1,23 @@
 ﻿using System.Linq.Expressions;
 using FluentValidation;
-using LanosCertifiedStore.Application.Shared.ValidationRelated;
-using LanosCertifiedStore.Domain.Contracts.Common;
-using LanosCertifiedStore.Domain.Entities.VehicleRelated;
-using LanosCertifiedStore.Domain.Entities.VehicleRelated.TypeRelated;
 
 namespace LanosCertifiedStore.Application.VehicleModels.Commands.CreateVehicleModelRelated;
 
 internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValidator<CreateVehicleModelCommandRequest>
 {
-    public CreateVehicleModelCommandRequestValidator(IValidationHelper validationHelper)
+    public CreateVehicleModelCommandRequestValidator()
     {
-        GetNameValidationRules(validationHelper);
-        GetBrandValidationRules(validationHelper);
-        GetTypeValidationRules(validationHelper);
-        GetBodyTypesValidationRules(validationHelper);
-        GetTransmissionTypesValidationRules(validationHelper);
-        GetDrivetrainTypesValidationRules(validationHelper);
-        GetEngineTypesValidationRules(validationHelper);
+        GetNameValidationRules();
+        GetBrandValidationRules();
+        GetTypeValidationRules();
+        GetBodyTypesValidationRules();
+        GetTransmissionTypesValidationRules();
+        GetDrivetrainTypesValidationRules();
+        GetEngineTypesValidationRules();
         GetProductionYearValidationRules();
     }
 
-    private void GetNameValidationRules(IValidationHelper validationHelper)
+    private void GetNameValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, string>> expression = x => x.Name;
 
@@ -30,18 +26,9 @@ internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValida
             .MinimumLength(2)
             .MaximumLength(64)
             .WithMessage(VehicleModelValidatorMessages.InvalidNameValue);
-
-        RuleFor(expression)
-            .MustAsync(async (name, _) =>
-            {
-                Expression<Func<VehicleModel, bool>> equalityExpression = model => model.Name.Equals(name);
-
-                return await validationHelper.CheckAspectValueUniqueness(name, equalityExpression);
-            })
-            .WithMessage(VehicleModelValidatorMessages.AlreadyExistingNameValue);
     }
 
-    private void GetBodyTypesValidationRules(IValidationHelper validationHelper)
+    private void GetBodyTypesValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, IEnumerable<Guid>>> expression =
             x => x.AvailableBodyTypesIds;
@@ -50,14 +37,9 @@ internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValida
             .NotNull()
             .NotEmpty()
             .WithMessage(VehicleModelValidatorMessages.EmptyBodyTypeCollection);
-
-        RuleFor(expression)
-            .MustAsync(async (_, ids, context, _) =>
-                await ExistByIds<VehicleBodyType>(validationHelper, ids, context))
-            .WithMessage(VehicleModelValidatorMessages.NonExistingBodyType);
     }
 
-    private void GetEngineTypesValidationRules(IValidationHelper validationHelper)
+    private void GetEngineTypesValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, IEnumerable<Guid>>> expression =
             x => x.AvailableEngineTypesIds;
@@ -66,14 +48,9 @@ internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValida
             .NotNull()
             .NotEmpty()
             .WithMessage(VehicleModelValidatorMessages.EmptyEngineTypeCollection);
-
-        RuleFor(expression)
-            .MustAsync(async (_, ids, context, _) =>
-                await ExistByIds<VehicleEngineType>(validationHelper, ids, context))
-            .WithMessage(VehicleModelValidatorMessages.NonExistingEngineType);
     }
 
-    private void GetDrivetrainTypesValidationRules(IValidationHelper validationHelper)
+    private void GetDrivetrainTypesValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, IEnumerable<Guid>>> expression =
             x => x.AvailableDrivetrainTypesIds;
@@ -82,14 +59,9 @@ internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValida
             .NotNull()
             .NotEmpty()
             .WithMessage(VehicleModelValidatorMessages.EmptyDrivetrainTypeCollection);
-        
-        RuleFor(expression)
-            .MustAsync(async (_, ids, context, _) =>
-                await ExistByIds<VehicleDrivetrainType>(validationHelper, ids, context))
-            .WithMessage(VehicleModelValidatorMessages.NonExistingDrivetrainType);
     }
 
-    private void GetTransmissionTypesValidationRules(IValidationHelper validationHelper)
+    private void GetTransmissionTypesValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, IEnumerable<Guid>>> expression =
             x => x.AvailableTransmissionTypesIds;
@@ -98,30 +70,27 @@ internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValida
             .NotNull()
             .NotEmpty()
             .WithMessage(VehicleModelValidatorMessages.EmptyTransmissionTypeCollection);
-        
-        RuleFor(expression)
-            .MustAsync(async (_, ids, context, _) =>
-                await ExistByIds<VehicleTransmissionType>(validationHelper, ids, context))
-            .WithMessage(VehicleModelValidatorMessages.NonExistingTransmissionType);
     }
 
-    private void GetBrandValidationRules(IValidationHelper validationHelper)
+    private void GetBrandValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, Guid>> expression = x => x.BrandId;
 
         RuleFor(expression)
-            .MustAsync(async (_, id, context, _) =>
-                await ExistById<VehicleBrand>(validationHelper, id, context))
+            .NotNull()
+            .NotEmpty()
+            .NotEqual(Guid.Empty)
             .WithMessage(VehicleModelValidatorMessages.InvalidBrandIdValue);
     }
 
-    private void GetTypeValidationRules(IValidationHelper validationHelper)
+    private void GetTypeValidationRules()
     {
         Expression<Func<CreateVehicleModelCommandRequest, Guid>> expression = x => x.TypeId;
 
         RuleFor(expression)
-            .MustAsync(async (_, id, context, _) =>
-                await ExistById<VehicleType>(validationHelper, id, context))
+            .NotNull()
+            .NotEmpty()
+            .NotEqual(Guid.Empty)
             .WithMessage(VehicleModelValidatorMessages.InvalidTypeIdValue);
     }
 
@@ -146,37 +115,5 @@ internal sealed class CreateVehicleModelCommandRequestValidator : AbstractValida
             .GreaterThanOrEqualTo(minimalProductionYearExpression)
             .When(p => p.MaximumProductionYear.HasValue)
             .WithMessage(VehicleModelValidatorMessages.TooSmallMaximumProductionYearValue);
-    }
-
-    private async Task<bool> ExistByIds<TEntity>(
-        IValidationHelper validationHelper,
-        IEnumerable<Guid> ids,
-        ValidationContext<CreateVehicleModelCommandRequest> context)
-        where TEntity : class, IIdentifiable<Guid>
-    {
-        var checkResult = await validationHelper.CheckMainAspectPresence<TEntity>(ids);
-
-        if (!checkResult.IsSuccess)
-        {
-            context.MessageFormatter.AppendArgument("AspectId", checkResult.Id);
-        }
-
-        return checkResult.IsSuccess;
-    }
-
-    private async Task<bool> ExistById<TEntity>(
-        IValidationHelper validationHelper,
-        Guid id,
-        ValidationContext<CreateVehicleModelCommandRequest> context)
-        where TEntity : class, IIdentifiable<Guid>
-    {
-        var checkResult = await validationHelper.CheckMainAspectPresence<TEntity>(id);
-
-        if (!checkResult)
-        {
-            context.MessageFormatter.AppendArgument("AspectId", id);
-        }
-
-        return checkResult;
     }
 }

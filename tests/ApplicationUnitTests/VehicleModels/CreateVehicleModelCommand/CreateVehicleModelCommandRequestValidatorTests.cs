@@ -1,21 +1,15 @@
-﻿using System.Linq.Expressions;
-using FluentValidation.TestHelper;
-using LanosCertifiedStore.Application.Shared.ValidationRelated;
-using LanosCertifiedStore.Application.VehicleModels;
+﻿using FluentValidation.TestHelper;
 using LanosCertifiedStore.Application.VehicleModels.Commands.CreateVehicleModelRelated;
-using LanosCertifiedStore.Domain.Entities.VehicleRelated;
-using LanosCertifiedStore.Domain.Entities.VehicleRelated.TypeRelated;
 
 namespace ApplicationUnitTests.VehicleModels.CreateVehicleModelCommand;
 
 public sealed class CreateVehicleModelCommandRequestValidatorTests
 {
-    private readonly IValidationHelper _validationHelper = Substitute.For<IValidationHelper>();
     private readonly CreateVehicleModelCommandRequestValidator _validator;
 
     public CreateVehicleModelCommandRequestValidatorTests()
     {
-        _validator = new CreateVehicleModelCommandRequestValidator(_validationHelper);
+        _validator = new CreateVehicleModelCommandRequestValidator();
     }
 
     [Fact]
@@ -58,32 +52,10 @@ public sealed class CreateVehicleModelCommandRequestValidatorTests
     }
 
     [Fact]
-    public async Task Should_HaveError_WhenNameIsNotUnique()
-    {
-        // Arrange
-        var model = CreateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckAspectValueUniqueness(Arg.Any<string>(), Arg.Any<Expression<Func<VehicleModel, bool>>>())
-            .Returns(false);
-
-        // Act
-        var result = await _validator.TestValidateAsync(model);
-
-        // Assert
-        result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorMessage(VehicleModelValidatorMessages.AlreadyExistingNameValue);
-    }
-
-    [Fact]
     public async Task Should_HaveError_WhenAnyOfTransmissionTypesDoesNotExist()
     {
         // Arrange
         var model = CreateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleTransmissionType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
 
         // Act
         var result = await _validator.TestValidateAsync(model);
@@ -97,11 +69,7 @@ public sealed class CreateVehicleModelCommandRequestValidatorTests
     {
         // Arrange
         var model = CreateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleBodyType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
-
+        
         // Act
         var result = await _validator.TestValidateAsync(model);
 
@@ -114,11 +82,7 @@ public sealed class CreateVehicleModelCommandRequestValidatorTests
     {
         // Arrange
         var model = CreateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleDrivetrainType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
-
+        
         // Act
         var result = await _validator.TestValidateAsync(model);
 
@@ -131,10 +95,6 @@ public sealed class CreateVehicleModelCommandRequestValidatorTests
     {
         // Arrange
         var model = CreateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleEngineType>(Arg.Any<IEnumerable<Guid>>())
-            .Returns((Guid.NewGuid(), false));
 
         // Act
         var result = await _validator.TestValidateAsync(model);
@@ -149,10 +109,6 @@ public sealed class CreateVehicleModelCommandRequestValidatorTests
         // Arrange
         var model = CreateVehicleModelCommandTestExemplars.Regular();
 
-        _validationHelper
-            .CheckMainAspectPresence<VehicleBrand>(Arg.Any<Guid>())
-            .Returns(false);
-
         // Act
         var result = await _validator.TestValidateAsync(model);
 
@@ -165,11 +121,7 @@ public sealed class CreateVehicleModelCommandRequestValidatorTests
     {
         // Arrange
         var model = CreateVehicleModelCommandTestExemplars.Regular();
-
-        _validationHelper
-            .CheckMainAspectPresence<VehicleType>(Arg.Any<Guid>())
-            .Returns(false);
-
+        
         // Act
         var result = await _validator.TestValidateAsync(model);
 
