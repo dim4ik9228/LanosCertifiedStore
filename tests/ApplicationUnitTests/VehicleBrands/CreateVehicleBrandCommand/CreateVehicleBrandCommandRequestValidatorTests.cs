@@ -1,20 +1,15 @@
-﻿using System.Linq.Expressions;
-using FluentValidation.TestHelper;
-using LanosCertifiedStore.Application.Shared.ValidationRelated;
-using LanosCertifiedStore.Application.VehicleBrands;
+﻿using FluentValidation.TestHelper;
 using LanosCertifiedStore.Application.VehicleBrands.Commands.CreateVehicleBrandRelated;
-using LanosCertifiedStore.Domain.Entities.VehicleRelated;
 
 namespace ApplicationUnitTests.VehicleBrands.CreateVehicleBrandCommand;
 
 public sealed class CreateVehicleBrandCommandRequestValidatorTests
 {
-    private readonly IValidationHelper _validationHelper = Substitute.For<IValidationHelper>();
     private readonly CreateVehicleBrandCommandRequestValidator _validator;
 
     public CreateVehicleBrandCommandRequestValidatorTests()
     {
-        _validator = new CreateVehicleBrandCommandRequestValidator(_validationHelper);
+        _validator = new CreateVehicleBrandCommandRequestValidator();
     }
 
     [Fact]
@@ -54,23 +49,5 @@ public sealed class CreateVehicleBrandCommandRequestValidatorTests
 
         // Assert
         result.ShouldHaveValidationErrorFor(x => x.Name);
-    }
-
-    [Fact]
-    public async Task Should_HaveError_WhenNameIsNotUnique()
-    {
-        // Arrange
-        var model = new CreateVehicleBrandCommandRequest("ExistingBrand");
-
-        _validationHelper
-            .CheckAspectValueUniqueness(Arg.Any<string>(), Arg.Any<Expression<Func<VehicleBrand, bool>>>())
-            .Returns(false);
-
-        // Act
-        var result = await _validator.TestValidateAsync(model);
-
-        // Assert
-        result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorMessage(VehicleBrandValidatorMessages.AlreadyExistingNameValue);
     }
 }
