@@ -193,27 +193,6 @@ internal static class CreateVehicleCommandTestExemplars
         );
     }
 
-    public static CreateVehicleCommandRequest WithEmptyVehicleTypeId()
-    {
-        return new CreateVehicleCommandRequest(
-            BrandId: Guid.NewGuid(),
-            ModelId: Guid.NewGuid(),
-            VehicleTypeId: Guid.Empty,
-            BodyTypeId: Guid.NewGuid(),
-            EngineTypeId: Guid.NewGuid(),
-            TransmissionTypeId: Guid.NewGuid(),
-            DrivetrainTypeId: Guid.NewGuid(),
-            ColorId: Guid.NewGuid(),
-            LocationTownId: Guid.NewGuid(),
-            Description: "This is a valid description with more than twenty characters",
-            Displacement: 2.0,
-            Price: 15000.00m,
-            ProductionYear: 2020,
-            Mileage: 50000,
-            Vincode: "1HGCM82633A123456"
-        );
-    }
-
     public static CreateVehicleCommandRequest WithEmptyBodyTypeId()
     {
         return new CreateVehicleCommandRequest(
@@ -245,48 +224,6 @@ internal static class CreateVehicleCommandTestExemplars
             EngineTypeId: Guid.Empty,
             TransmissionTypeId: Guid.NewGuid(),
             DrivetrainTypeId: Guid.NewGuid(),
-            ColorId: Guid.NewGuid(),
-            LocationTownId: Guid.NewGuid(),
-            Description: "This is a valid description with more than twenty characters",
-            Displacement: 2.0,
-            Price: 15000.00m,
-            ProductionYear: 2020,
-            Mileage: 50000,
-            Vincode: "1HGCM82633A123456"
-        );
-    }
-
-    public static CreateVehicleCommandRequest WithEmptyTransmissionTypeId()
-    {
-        return new CreateVehicleCommandRequest(
-            BrandId: Guid.NewGuid(),
-            ModelId: Guid.NewGuid(),
-            VehicleTypeId: Guid.NewGuid(),
-            BodyTypeId: Guid.NewGuid(),
-            EngineTypeId: Guid.NewGuid(),
-            TransmissionTypeId: Guid.Empty,
-            DrivetrainTypeId: Guid.NewGuid(),
-            ColorId: Guid.NewGuid(),
-            LocationTownId: Guid.NewGuid(),
-            Description: "This is a valid description with more than twenty characters",
-            Displacement: 2.0,
-            Price: 15000.00m,
-            ProductionYear: 2020,
-            Mileage: 50000,
-            Vincode: "1HGCM82633A123456"
-        );
-    }
-
-    public static CreateVehicleCommandRequest WithEmptyDrivetrainTypeId()
-    {
-        return new CreateVehicleCommandRequest(
-            BrandId: Guid.NewGuid(),
-            ModelId: Guid.NewGuid(),
-            VehicleTypeId: Guid.NewGuid(),
-            BodyTypeId: Guid.NewGuid(),
-            EngineTypeId: Guid.NewGuid(),
-            TransmissionTypeId: Guid.NewGuid(),
-            DrivetrainTypeId: Guid.Empty,
             ColorId: Guid.NewGuid(),
             LocationTownId: Guid.NewGuid(),
             Description: "This is a valid description with more than twenty characters",
