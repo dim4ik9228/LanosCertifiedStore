@@ -2,12 +2,10 @@
 using LanosCertifiedStore.Application.Shared.ResultRelated;
 using LanosCertifiedStore.Application.Vehicles.Queries.SingleVehicleQueryRequestRelated;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace LanosCertifiedStore.Application.Vehicles.Commands.DeleteVehicleCommandRequestRelated;
 
 internal sealed class DeleteVehicleCommandRequestHandler(
-    ILogger<DeleteVehicleCommandRequestHandler> logger,
     IVehicleService vehicleService,
     IImageService imageService) : IRequestHandler<DeleteVehicleCommandRequest, Result>
 {
