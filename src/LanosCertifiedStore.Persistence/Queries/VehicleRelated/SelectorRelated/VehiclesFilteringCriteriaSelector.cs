@@ -64,6 +64,10 @@ internal sealed class VehiclesFilteringCriteriaSelector : QueryFilteringCriteria
                 castedParams.UpperPriceLimit.HasValue,
                 vehicle => vehicle.Prices.OrderByDescending(p => p.IssueDate).First().Value <=
                            castedParams.UpperPriceLimit!.Value
+            ),
+            (
+                castedParams.ProductionYear.HasValue,
+                vehicle => vehicle.ProductionYear.Equals(castedParams.ProductionYear)
             )
         ];
     }
