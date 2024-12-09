@@ -11,7 +11,7 @@ public abstract class BaseFilteringRequestParameters<TModel> : IFilteringRequest
     public int PageIndex
     {
         get => _pageIndex;
-        set => _pageIndex = value < InitialPageIndex 
+        init => _pageIndex = value < InitialPageIndex 
             ? InitialPageIndex 
             : value;
     }
@@ -19,10 +19,10 @@ public abstract class BaseFilteringRequestParameters<TModel> : IFilteringRequest
     public ItemQuantitySelection ItemQuantity
     {
         get => MaxQuantityPerRequest;
-        set => MaxQuantityPerRequest = (int)value > (int)MaxQuantityPerRequest ? value : MaxQuantityPerRequest;
+        init => MaxQuantityPerRequest = (int)value < (int)MaxQuantityPerRequest ? value : MaxQuantityPerRequest;
     }
 
-    public ItemQuantitySelection MaxQuantityPerRequest { get; private set; } = ItemQuantitySelection.Ten;
+    protected ItemQuantitySelection MaxQuantityPerRequest { get; private set; } = ItemQuantitySelection.Hundred;
 
     public string? SortingType { get; set; }
 }

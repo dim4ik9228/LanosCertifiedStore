@@ -7,6 +7,5 @@ public interface IFilteringRequestParameters<TModel>
 {
     int PageIndex { get; }
     ItemQuantitySelection ItemQuantity { get; }
-    ItemQuantitySelection MaxQuantityPerRequest { get; }
     string? SortingType { get; }
 }
